@@ -126,7 +126,7 @@ export function SimulatePhase({ muted, onNext }) {
       <BgSymbols />
 
       {/* Main Simulation Stations Glass Card Container */}
-      <div className="w-full max-w-7xl h-full max-h-[calc(100vh-3.8rem)] bg-[#160b36]/95 border-2 border-purple-400/40 rounded-2xl sm:rounded-3xl p-2.5 sm:p-3.5 md:p-4 shadow-2xl backdrop-blur-md flex flex-col items-center fade-in-up z-20 overflow-hidden">
+      <div className="w-full max-w-7xl h-full max-h-[calc(100vh-4.2rem)] bg-[#160b36]/95 border-2 border-purple-400/40 rounded-2xl sm:rounded-3xl p-2.5 sm:p-3.5 md:p-4 shadow-2xl backdrop-blur-md flex flex-col items-center fade-in-up z-20 overflow-hidden">
         
         {/* Compact Slim Top Bar for Laptops */}
         <div className="flex items-center justify-between w-full pb-2 mb-2 border-b border-purple-400/25 shrink-0">
@@ -193,22 +193,22 @@ export function SimulatePhase({ muted, onNext }) {
             <div className="flex flex-col flex-1 min-h-0 justify-between overflow-hidden">
               {/* Header Row */}
               <div className="flex items-center justify-between border-b border-white/15 pb-1.5 mb-1.5 shrink-0">
-                <h3 className="font-display font-900 text-base sm:text-lg md:text-xl text-cyan-300 flex items-center gap-2">
-                  <span className="text-lg sm:text-xl">{currentActivity.icon}</span>
-                  <span>{currentActivity.title}</span>
+                <h3 className="font-display font-900 text-base sm:text-lg md:text-xl text-cyan-300 flex items-center gap-2 min-w-0">
+                  <span className="text-lg sm:text-xl shrink-0">{currentActivity.icon}</span>
+                  <span className="truncate">{currentActivity.title}</span>
                 </h3>
-                <span className="font-display font-900 text-xs text-slate-200 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/15">
+                <span className="font-display font-900 text-xs text-slate-200 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/15 shrink-0">
                   Activity {actIdx + 1} of 3
                 </span>
               </div>
 
               {/* Activity Description */}
-              <p className="text-slate-200 text-xs sm:text-sm leading-snug font-bold mb-1.5 shrink-0">
+              <p className="text-slate-200 text-xs sm:text-sm leading-snug font-bold mb-1.5 shrink-0 break-words">
                 {currentActivity.desc}
               </p>
 
               {/* Activity body */}
-              <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
+              <div className="flex-1 min-h-0 flex flex-col overflow-hidden w-full">
                 <ActivityComp key={`${station}-${actIdx}`} muted={muted} />
               </div>
             </div>

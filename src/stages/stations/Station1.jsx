@@ -184,7 +184,7 @@ export function GardenArea() {
       </div>
 
       {/* SVG Garden Illustration */}
-      <svg width="320" height="150" viewBox="0 0 340 160" className="drop-shadow-[0_0_18px_rgba(34,197,94,0.45)] shrink-0 overflow-visible max-h-[150px] h-auto">
+      <svg viewBox="0 0 340 160" className="drop-shadow-[0_0_18px_rgba(34,197,94,0.45)] shrink-0 max-w-full w-full max-w-[320px] max-h-[140px] h-auto">
         <defs>
           <pattern id="soilPattern" width="12" height="12" patternUnits="userSpaceOnUse">
             <rect width="12" height="12" fill="#14532d" />

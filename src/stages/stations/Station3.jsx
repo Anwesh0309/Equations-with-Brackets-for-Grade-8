@@ -137,7 +137,7 @@ export function PerimeterPuzzle({ muted }) {
 
       {/* Architectural Court Blueprint */}
       <div className="flex items-center justify-center gap-4 w-full flex-wrap shrink-0">
-        <svg width="250" height="125" viewBox="0 0 290 130" className="drop-shadow-[0_0_16px_rgba(56,189,248,0.4)] shrink-0 overflow-visible max-h-[125px] h-auto">
+        <svg viewBox="0 0 290 130" className="drop-shadow-[0_0_16px_rgba(56,189,248,0.4)] shrink-0 max-w-full w-full max-w-[250px] max-h-[125px] h-auto">
           {/* Outer perimeter fence line */}
           <rect
             x="35" y="24" width="220" height="78" rx="8"

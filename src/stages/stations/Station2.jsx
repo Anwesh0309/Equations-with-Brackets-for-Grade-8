@@ -127,34 +127,38 @@ export function BalanceMoves({ muted }) {
 
       {!cur.done ? (
         <>
-          <p className="font-display font-900 text-xs sm:text-sm text-white shrink-0">
+          <p className="font-display font-900 text-xs sm:text-sm text-white shrink-0 text-center">
             Pick your next move to keep the scale balanced:
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full shrink-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full max-w-lg shrink-0">
             {order.map((ch, i) => (
               <button
                 key={i}
                 onClick={() => choose(ch)}
-                className="py-2 sm:py-2.5 px-3 sm:px-3.5 rounded-xl sm:rounded-2xl bg-[#14082e]/95 border-2 border-purple-400/40 text-white font-display font-900 text-xs sm:text-sm hover:border-cyan-400 hover:bg-[#1f0f45] hover:scale-[1.01] transition cursor-pointer text-left flex items-center justify-between"
+                className="py-2 px-3 sm:px-3.5 rounded-xl sm:rounded-2xl bg-[#14082e]/95 border-2 border-purple-400/40 text-white font-display font-900 text-xs sm:text-sm hover:border-cyan-400 hover:bg-[#1f0f45] hover:scale-[1.01] transition cursor-pointer text-left flex items-center justify-between"
               >
-                <span>{ch.t}</span>
-                <span className="text-cyan-300 text-sm ml-1.5">➜</span>
+                <span className="flex-1 min-w-0 leading-snug">{ch.t}</span>
+                <span className="text-cyan-300 text-sm ml-1.5 shrink-0">➜</span>
               </button>
             ))}
           </div>
-          {msg && <Banner ok={false}>⚠️ Scale Tilted! {msg}</Banner>}
+          {msg && (
+            <div className="w-full max-w-lg shrink-0">
+              <Banner ok={false}>⚠️ Scale Tilted! {msg}</Banner>
+            </div>
+          )}
         </>
       ) : (
-        <>
+        <div className="w-full max-w-lg flex flex-col items-center gap-2 shrink-0">
           <Banner ok>
             🎉 Balanced! Each bag of apples weighs x = 5 kg! Check: 2(5 + 3) = 2 × 8 = 16 kg ✓
           </Banner>
           <GhostBtn onClick={restart}>↺ Try the other solving method (Expand vs Divide)</GhostBtn>
-        </>
+        </div>
       )}
 
       {/* Solving Breadcrumb Log */}
-      <div className="flex items-center justify-center gap-1.5 flex-wrap shrink-0 mt-0.5">
+      <div className="flex items-center justify-center gap-1.5 flex-wrap shrink-0 mt-0.5 w-full max-w-lg">
         {log.map((l, i) => (
           <React.Fragment key={i}>
             {i > 0 && <span className="text-amber-400 font-black text-xs">➜</span>}
@@ -216,7 +220,7 @@ export function MistakeDetective({ muted }) {
       </RealWorldTag>
 
       {/* Notebook Homework Sheet */}
-      <div className="w-full max-w-md bg-[#0e0626] border-2 border-purple-400/40 rounded-xl sm:rounded-2xl p-2.5 sm:p-3 flex flex-col gap-1.5 sm:gap-2 shrink-0 shadow-lg">
+      <div className="w-full max-w-md bg-[#0e0626] border-2 border-purple-400/40 rounded-xl sm:rounded-2xl p-2 sm:p-2.5 flex flex-col gap-1.5 shrink-0 shadow-lg">
         <div className="flex items-center justify-between border-b border-white/10 pb-1">
           <p className="text-amber-300 font-display font-900 text-xs sm:text-sm">📝 Sam's Math Homework</p>
           <span className="text-xs font-bold text-slate-300">Class 7B Peer Review</span>
@@ -229,7 +233,7 @@ export function MistakeDetective({ muted }) {
             <button
               key={i}
               onClick={() => pickLine(i)}
-              className={`flex items-center justify-between rounded-xl px-3 py-1.5 border-2 text-left transition cursor-pointer ${
+              className={`flex items-center justify-between rounded-xl px-2.5 sm:px-3 py-1.5 border-2 text-left transition cursor-pointer w-full ${
                 phase === 2 && isErrorLine
                   ? 'border-emerald-400 bg-emerald-950/70 shadow-[0_0_15px_rgba(52,211,153,0.3)]'
                   : wrong
@@ -237,37 +241,37 @@ export function MistakeDetective({ muted }) {
                   : 'border-white/15 bg-white/5 hover:border-cyan-400'
               }`}
             >
-              <div>
-                <span className={`font-display font-900 text-sm sm:text-base ${wrong && phase === 1 ? 'text-rose-300 line-through' : 'text-white'}`}>
+              <div className="flex-1 min-w-0 pr-2">
+                <span className={`font-display font-900 text-xs sm:text-sm block ${wrong && phase === 1 ? 'text-rose-300 line-through' : 'text-white'}`}>
                   {phase === 2 && isErrorLine ? 'Line 2: 3x − 6 = 21' : w.line}
                 </span>
-                <p className="text-xs font-bold text-slate-300">{w.note}</p>
+                <p className="text-[11px] sm:text-xs font-bold text-slate-300 leading-snug break-words">{w.note}</p>
               </div>
 
-              {wrong && phase === 1 && <span className="text-lg ml-2">❌</span>}
-              {phase === 2 && isErrorLine && <span className="text-lg ml-2">✅</span>}
+              {wrong && phase === 1 && <span className="text-base sm:text-lg shrink-0">❌</span>}
+              {phase === 2 && isErrorLine && <span className="text-base sm:text-lg shrink-0">✅</span>}
             </button>
           );
         })}
       </div>
 
       {phase === 0 && (
-        <p className="text-cyan-200 font-extrabold text-xs sm:text-sm shrink-0">
+        <p className="text-cyan-200 font-extrabold text-xs sm:text-sm text-center shrink-0">
           🔍 Click on the FIRST line where Sam made an algebra mistake!
         </p>
       )}
 
       {phase === 1 && (
-        <div className="w-full flex flex-col items-center gap-1.5 shrink-0 fade-in-up">
-          <p className="text-slate-100 font-bold text-xs sm:text-sm text-center">
+        <div className="w-full max-w-md flex flex-col items-center gap-1.5 shrink-0 fade-in-up">
+          <p className="text-slate-100 font-bold text-xs sm:text-sm text-center leading-snug">
             Aha! Sam forgot to multiply the 3 with the −2 coupon. Which line should replace Line 2?
           </p>
-          <div className="flex items-center gap-2 flex-wrap justify-center">
+          <div className="flex items-center gap-2 flex-wrap justify-center w-full">
             {fixes.map((f, i) => (
               <button
                 key={i}
                 onClick={() => pickFix(f)}
-                className="py-1.5 px-3.5 rounded-xl bg-[#14082e]/95 border-2 border-purple-400/40 text-white font-display font-900 text-xs sm:text-sm hover:border-cyan-400 hover:scale-105 transition cursor-pointer"
+                className="py-1.5 px-3 sm:px-3.5 rounded-xl bg-[#14082e]/95 border-2 border-purple-400/40 text-white font-display font-900 text-xs sm:text-sm hover:border-cyan-400 hover:scale-105 transition cursor-pointer"
               >
                 {f.t}
               </button>
@@ -277,12 +281,18 @@ export function MistakeDetective({ muted }) {
       )}
 
       {phase === 2 && (
-        <Banner ok>
-          🎉 Homework Corrected! 3x − 6 = 21 → 3x = 27 → x = $9 per kit! Check: 3(9 − 2) = 3 × 7 = $21 ✓
-        </Banner>
+        <div className="w-full max-w-md shrink-0">
+          <Banner ok>
+            🎉 Homework Corrected! 3x − 6 = 21 → 3x = 27 → x = $9 per kit! Check: 3(9 − 2) = 3 × 7 = $21 ✓
+          </Banner>
+        </div>
       )}
 
-      {msg && <Banner ok={msg.ok}>⚠️ {msg.t}</Banner>}
+      {msg && (
+        <div className="w-full max-w-md shrink-0">
+          <Banner ok={msg.ok}>⚠️ {msg.t}</Banner>
+        </div>
+      )}
     </div>
   );
 }
@@ -333,22 +343,22 @@ export function StepSorter({ muted }) {
         {SORT_STEPS.map((stepItem, slot) => (
           <div
             key={slot}
-            className={`flex items-center justify-between rounded-xl px-3 py-1.5 border-2 min-h-[38px] transition-all ${
+            className={`flex items-center justify-between rounded-xl px-2.5 sm:px-3 py-1.5 border-2 min-h-[36px] transition-all ${
               placed[slot] !== undefined
                 ? 'bg-emerald-950/70 border-emerald-400/80 shadow-md'
                 : 'bg-white/5 border-dashed border-white/20'
             }`}
           >
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2 min-w-0 flex-1 pr-1.5">
               <span className="w-5 h-5 rounded-full bg-amber-400 text-slate-950 text-xs font-black flex items-center justify-center shrink-0">
                 {slot + 1}
               </span>
-              <span className="font-display font-900 text-xs sm:text-sm text-white">
+              <span className="font-display font-900 text-xs sm:text-sm text-white truncate">
                 {placed[slot] !== undefined ? SORT_STEPS[placed[slot]].t : <span className="text-slate-500">Awaiting step {slot + 1}...</span>}
               </span>
             </div>
             {placed[slot] !== undefined && (
-              <span className="text-xs font-extrabold text-emerald-300 bg-emerald-900/60 px-2 py-0.5 rounded border border-emerald-400/40">
+              <span className="text-[11px] sm:text-xs font-extrabold text-emerald-300 bg-emerald-900/60 px-2 py-0.5 rounded border border-emerald-400/40 shrink-0">
                 {SORT_STEPS[placed[slot]].badge}
               </span>
             )}
@@ -357,16 +367,16 @@ export function StepSorter({ muted }) {
       </div>
 
       {!done && (
-        <>
-          <p className="text-cyan-200 font-extrabold text-xs sm:text-sm shrink-0">
+        <div className="w-full max-w-md flex flex-col items-center gap-1.5 shrink-0">
+          <p className="text-cyan-200 font-extrabold text-xs sm:text-sm text-center">
             Tap cards below in correct sequential solving order 👇
           </p>
-          <div className="flex flex-wrap justify-center gap-2 shrink-0">
+          <div className="flex flex-wrap justify-center gap-2 w-full">
             {deck.filter(id => !placed.includes(id)).map(id => (
               <button
                 key={id}
                 onClick={() => tap(id)}
-                className={`py-1.5 px-3 rounded-xl bg-[#14082e]/95 border-2 border-purple-400/40 text-white font-display font-900 text-xs sm:text-sm hover:border-cyan-400 hover:scale-105 transition cursor-pointer shadow-md ${
+                className={`py-1.5 px-3 rounded-xl bg-[#14082e]/95 border-2 border-purple-400/40 text-white font-display font-900 text-xs sm:text-sm hover:border-cyan-400 hover:scale-102 transition cursor-pointer shadow-md text-left ${
                   shakeId === id ? 'animate-shake border-rose-400' : ''
                 }`}
               >
@@ -374,18 +384,22 @@ export function StepSorter({ muted }) {
               </button>
             ))}
           </div>
-        </>
+        </div>
       )}
 
-      {msg && !done && <Banner ok={false}>⚠️ {msg}</Banner>}
+      {msg && !done && (
+        <div className="w-full max-w-md shrink-0">
+          <Banner ok={false}>⚠️ {msg}</Banner>
+        </div>
+      )}
 
       {done && (
-        <>
+        <div className="w-full max-w-md flex flex-col items-center gap-2 shrink-0">
           <Banner ok>
             🚀 Calibration Complete! Sensor temperature is x = −2°C. Both sides match 10 = 10 ✓ Rover ready to roll!
           </Banner>
           <GhostBtn onClick={() => { setPlaced([]); setMsg(null); }}>↺ Recalibrate Again</GhostBtn>
-        </>
+        </div>
       )}
     </div>
   );
